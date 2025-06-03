@@ -1,0 +1,42 @@
+services:
+  clickhouse:
+    image: 'clickhouse/clickhouse-server:${CHVER:-latest}'
+    container_name: clickhouse
+    hostname: clickhouse
+    ports:
+      - '8123:8123'  
+      - '9000:9000' 
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d  
+      - ./clickhouse-server/etc/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./clickhouse-server/etc/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
+    networks:
+      - network
+    depends_on:
+      - clickhouse-keeper
+
+  clickhouse-keeper:
+    image: 'clickhouse/clickhouse-keeper:${CHKVER:-latest-alpine}'
+    container_name: clickhouse-keeper
+    hostname: clickhouse-keeper
+    volumes:
+      - ./clickhouse-keeper/etc/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
+    ports:
+      - '127.0.0.1:9181:9181'
+    networks:
+      - network
+
+  tabix:
+    image: 'spoonest/clickhouse-tabix-web-client'
+    container_name: tabix
+    hostname: tabix
+    ports:
+      - '8080:80'
+    networks:
+      - network
+    depends_on:
+      - clickhouse
+
+networks:
+  network:
+    driver: bridge

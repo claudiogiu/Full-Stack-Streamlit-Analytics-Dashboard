@@ -1,0 +1,6 @@
+numpy==1.24.3
+pandas==2.0.3
+clickhouse-connect==0.6.6
+fastapi==0.103.2
+uvicorn==0.23.2
+requests==2.31.0
