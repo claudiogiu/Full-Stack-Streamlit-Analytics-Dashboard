@@ -2,7 +2,7 @@
 
 ## Introduction  
 
-This repository is designed for deploying an interactive analytics dashboard by adopting a full-stack architecture, via ClickHouse as the database, FastAPI as the backend and Streamlit as the frontend.  
+This repository is designed for deploying an interactive analytics dashboard by adopting a full-stack architecture via ClickHouse as the database, FastAPI as the backend and Streamlit as the frontend.  
 
 ClickHouse enables efficient execution of OLAP queries for high-performance data analysis. FastAPI provides a scalable and responsive API layer for seamless data communication, while Streamlit delivers an intuitive and interactive user interface for effective visualization.
 ## Getting Started 
