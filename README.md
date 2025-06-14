@@ -48,19 +48,19 @@ The `apps/` directory contains all necessary files to set up the **backend and f
 - `web/`: Implements the frontend service using **Streamlit**.  
   - `app.py`: Creates the user interface for data visualization and interaction.  
 
-To set up the backend and frontend environment, navigate to the repository root directory and execute the following command:  
+To set up the backend and frontend environment, navigate to the `apps/` directory and execute the following command:  
 
 ```bash
 docker-compose up -d
 ```
 This command initializes two key services that enable the backend and frontend to function properly:  
-- **api_container** – The FastAPI-based backend that processes queries and interacts with the ClickHouse database.  
-- **web_container** – The Streamlit-based frontend that provides an intuitive interface for data exploration and visualization.  
+- **Backend** – The FastAPI-based backend that processes queries and interacts with the ClickHouse database.  
+- **Frontend** – The Streamlit-based frontend that provides an intuitive interface for data exploration and visualization.  
 
-Before running the backend and frontend services, create a `.env` file inside the repository root directory with the necessary configuration:  
+Before running the backend and frontend services, create a `.env` file inside the `apps/` directory with the necessary configuration:  
 
 ```env
-API_URL=http://api:8000
+API_URL=http://backend:8000
 ```
 
 **3.** **Launch the Dashboard** 
