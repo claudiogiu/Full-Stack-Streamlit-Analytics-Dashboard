@@ -1,0 +1,32 @@
+services:
+  backend:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "8000:8000"
+    networks:
+      - application-network
+      - clickhouse-network  
+
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    networks:
+      - application-network
+    environment:
+      - API_URL=${API_URL} 
+
+networks:
+  application-network:
+    name: application-network
+    driver: bridge
+  clickhouse-network:  
+    external: true

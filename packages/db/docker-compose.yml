@@ -11,7 +11,7 @@ services:
       - ./clickhouse-server/etc/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
       - ./clickhouse-server/etc/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
     networks:
-      - network
+      - clickhouse-network
     depends_on:
       - clickhouse-keeper
 
@@ -24,7 +24,7 @@ services:
     ports:
       - '127.0.0.1:9181:9181'
     networks:
-      - network
+      - clickhouse-network
 
   tabix:
     image: 'spoonest/clickhouse-tabix-web-client'
@@ -33,10 +33,11 @@ services:
     ports:
       - '8080:80'
     networks:
-      - network
+      - clickhouse-network
     depends_on:
       - clickhouse
 
 networks:
-  network:
+  clickhouse-network:
     driver: bridge
+    name: clickhouse-network
